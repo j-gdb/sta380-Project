@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.75in]{geometry}
+\usepackage[dvipsnames]{xcolor} % adding colour
+\usepackage{amsmath} % adding math equations
+\usepackage{natbib} % adding BibTeX support
+\usepackage{hyperref}
+
+
+
+\begin{document}
+	\begin{center}
+    
+    	% MAKE SURE YOU TAKE OUT THE SQUARE BRACKETS
+    
+		\LARGE{\textbf{STA380 Project Proposal}} \\
+        \vspace{1em}
+        \Large{Bootstrap Estimate} \\
+        \vspace{1em}
+        \normalsize\textbf{Tristan Copplestone, Jacob Gipp, Riclyn Arpilleda, Johnathon Kok} \\
+        \normalsize{tristan.copplestone@mail.utoronto.ca, jacob.gipp@mail.utoronto.ca, riclynaarpilleda@mail.utoronto.ca, jonathon.kok@mail.utoronto.ca} \\
+        \vspace{1em}
+        \normalsize{University of Toronto, Mississauga}
+     
+	\end{center}
+    \begin{normalsize}    
+    	\section{Project Topic}
+        Computing bootstrap estimates for two descriptive statistics. \\
+
+        \section{Simulation vs. Dataset}
+        The results will be from a dataset. We used a dataset that recorded reaction time and aging by using a Nintendo Wii balance board. It was used in the ``Reference data on reaction time and aging using the Nintendo Wii Balance Board: A cross-sectional study of 354 subjects from 20 to 99 years of age" paper.
+        
+        \section{Project Details}
+        We will be computing bootstrap estimates using the dominant/non dominant hand, and dominant/non dominant foot data of the following statistics
+        \begin{itemize}
+            \item Mean
+            \item Interquartile range
+        \end{itemize}
+        The following outputs will be provided:
+        \begin{itemize}
+            \item A scatter plot of the data with the mean clearly indicated
+            \item A scatter plot of the data with the IQR overlayed.
+        \end{itemize}
+        
+        \section{User Inputs (Shiny Components)}
+        Users will be able to modify the following:
+        \begin{enumerate}
+            \item Setting the random seed.
+            \item Choose the number of resamples done for the bootstrap estimates.
+            \item Select the information presented: 
+                \begin{itemize}
+                    \item Gender
+                    \item Age range
+                    \item Which dataset (dominant/non dominant hand, dominant/non dominant foot)
+                \end{itemize}
+            \item Be able to choose what information is presented, seeing the mean, or IQR seperately if they wish.
+            \item For the plots, be able to modify the colours.
+        \end{enumerate}
+
+        \section{Generative AI Statement}
+        We did not use generative AI for this checkpoint.
+
+\end{normalsize}
+
+\nocite{*}
+\bibliographystyle{abbrvnat}
+\bibliography{bibliography}
+\vspace{0.8cm}
+
+
+
+\end{document}
