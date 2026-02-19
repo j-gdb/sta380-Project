@@ -71,3 +71,5 @@ abline(v = true_IQR, col = "red", lwd = 2)
 
 # Generative AI Statement
 We have used generative AI to help us set up the development environment, such as creating it as an R project and debugging errors when trying to generate the roxygen comments.
+
+# References
