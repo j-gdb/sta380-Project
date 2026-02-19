@@ -63,7 +63,7 @@ test_that("bootstrap_means has mean close to sample mean", {
   expect_equal(
     mean(boot),
     mean_rmna(x),
-    tolerance = 50
+    tolerance = 0.01
   )
 })
 
@@ -105,7 +105,7 @@ test_that("bootstrap_IQR has mean close to sample IQR", {
   expect_equal(
     mean(boot),
     IQR_rmna(x),
-    tolerance = 50
+    tolerance = 0.5
   )
 })
 
