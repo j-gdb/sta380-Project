@@ -1,7 +1,7 @@
-#' Clean a numeric like vector
-#' @description Cleans an inputted dataset of decimal points, characters, and missing values.
-#' @param data is the dataset you wish to clean
-#' @return A clean dataset
+#' Clean a numeric vector.
+#' @description Cleans an inputted vector of decimal points, characters, and missing values.
+#' @param data the vector to clean.
+#' @return A vector containing the cleaned data.
 #' @examples
 #' x <- c("1,000", "2,500", "", NA, 1)
 #' get_clean_numeric(x)
@@ -14,9 +14,9 @@ get_clean_numeric = function(data){
   return(data)
 }
 
-#' Compute the mean of a numeric vector after cleaning
+#' Compute the mean of a numeric vector after cleaning.
 #' @description Converts input to numeric, removes commas, empty strings, and NAs, then computes the arithmetic mean.
-#' @param data is the dataset to clean and average.
+#' @param data the vector to clean and average.
 #' @return A numeric scalar, which is the mean of the cleaned vector.
 #' @examples
 #' x <- c("1,000", "2,500", "", NA, 1)
@@ -28,9 +28,9 @@ mean_rmna <- function(data){
   sum(data)/n
 }
 
-#' Compute the IQR of a numeric vector after cleaning
+#' Compute the IQR of a numeric vector after cleaning.
 #' @description Converts input to numeric, removes commas, empty strings, and NAs, then computes the IQR.
-#' @param data is the dataset to clean and compute the IQR of.
+#' @param data the vector to clean and compute the IQR of.
 #' @return A numeric scalar, which is the IQR of the cleaned vector.
 #' @examples
 #' x <- c("1,000", "2,500", "", NA, 1)
@@ -43,10 +43,10 @@ IQR_rmna <- function(data){
   return(Q3 - Q1)
 }
 
-#' Bootstrap Sampling of the Mean
+#' Bootstrap Sampling of the Mean.
 #' @description Cleans a vector, then generates a bootstrap distribution of means by resampling with replacement.
-#' @param data is the dataset we wish to compute the mean of.
-#' @param num_samples represents the number of bootstrap samples to generate (default 5000).
+#' @param data the vector containing the dataset we wish to compute the mean of.
+#' @param num_samples the number of bootstrap samples to generate (default 5000).
 #' @return Numeric vector of length `num_samples`, containing bootstrap means.
 #' @examples
 #' x <- c("1,000", "2,500", "", NA, "1,200", "1,800")
@@ -65,10 +65,10 @@ bootstrap_means <- function(data, num_samples = 5000){
   return(boot_means)
 }
 
-#' Bootstrap Sampling for IQR
+#' Bootstrap Sampling for IQR.
 #' @description Cleans a vector, then generates a bootstrap distribution of the IQR by resampling with replacement.
-#' @param data is the dataset we wish to compute the IQR of.
-#' @param num_samples represents the number of bootstrap samples to generate (default 5000).
+#' @param data the vector containing the dataset we wish to compute the IQR of.
+#' @param num_samples the number of bootstrap samples to generate (default 5000).
 #' @return Numeric vector of length `num_samples`, containing bootstrap IQR
 #' @examples
 #' x <- c("1,000", "2,500", "", NA, "1,200", "1,800")

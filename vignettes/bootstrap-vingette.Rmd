@@ -1,10 +1,12 @@
 ---
-title: "bootstrap-vingette"
+title: "Bootstrap Sample Vignette"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{bootstrap-vingette}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+bibliography: bibliography.bib
+nocite: "@*"
 ---
 
 ```{r, include = FALSE}
@@ -18,3 +20,54 @@ knitr::opts_chunk$set(
 library(BootstrapResample)
 ```
 
+# Introduction
+This package provides a simple way to compute the mean and IQR of univariate data. It comes with some helper functions to get this done. This vignette serves as an example of how to use the libraries.
+
+Bootstrap resampling works by taking the original dataset with length $n$, and randomly sampling $n$ observations from that dataset with replacement, computing a desired statistic. This is done many times, producing a distribution for the statistic we are trying to estimate.
+
+# Bootstrap Resampling for Mean and IQR.
+
+## Loading Sample Data
+We can use a sample dataset, such as the `mtcars` dataset. We will be using the miles per gallon column for this example.
+```{r}
+set.seed(1)
+data("mtcars")
+x = mtcars$mpg
+```
+
+## Bootstrap Resampling for the Mean
+For this example, we will resample from the dataset 1000 times. By default, this package will resample 5000 times.
+```{r}
+true_mean = mean(x)
+boot_means = bootstrap_means(x, num_samples = 1000)
+```
+
+We can plot the distribution in a histogram, and compare it to the true mean, denoted by the red line.
+```{r, fig.width=7, fig.height=5}
+hist(boot_means,
+     main = "Bootstrap Distribution of Means for Miles Per Gallon",
+     xlab = "Bootstrap Means",
+     col = "skyblue",
+     prob = TRUE)
+abline(v = true_mean, col = "red", lwd = 2)
+```
+
+## Bootstrap Resampling for IQR
+Again, for this example, we will resample from the dataset 1000 times.
+```{r}
+true_IQR = IQR(x)
+boot_IQR = bootstrap_IQR(x, num_samples = 1000)
+```
+
+We can plot the distribution in a histogram, and compare it to the true IQR, denoted by the red line.
+```{r, fig.width=7, fig.height=5}
+hist(boot_IQR,
+     main = "Bootstrap Distribution of IQR for Miles Per Gallon",
+     xlab = "Bootstrap IQR",
+     col = "green",
+     prob = TRUE)
+abline(v = true_IQR, col = "red", lwd = 2)
+```
+
+# Generative AI Statement
+We have used generative AI to help us set up the development environment, such as creating it as an R project and debugging errors when trying to generate the roxygen comments.
