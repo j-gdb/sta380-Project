@@ -16,6 +16,10 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{r, echo = FALSE, message = FALSE}
+if (!require("BootstrapResample")) remotes::install_github("j-gdb/sta380-Project")
+```
+
 ```{r setup}
 library(BootstrapResample)
 ```
