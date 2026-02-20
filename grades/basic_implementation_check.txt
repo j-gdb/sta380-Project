@@ -1,0 +1,5 @@
+Good job! Check the GitHub issues for some things I think you should generally fix, but they are relatively minor.
+
+I've edited the vignette myself just because it does not render properly unless you do the installation. I didn't explicitly mention this when I should have.
+
+2/2
