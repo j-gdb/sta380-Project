@@ -52,6 +52,16 @@ test_that("bootstrap_means returns correct length", {
 })
 
 
+test_that("bootstrap_means is reproducible with same seed", {
+  x <- c("1,000", "2,500", "1,200", "1,800")
+
+  boot1 <- bootstrap_means(x, num_samples = 1000, seed = 123)
+  boot2 <- bootstrap_means(x, num_samples = 1000, seed = 123)
+
+  expect_equal(boot1, boot2)
+})
+
+
 test_that("bootstrap_means has mean close to sample mean", {
 
   set.seed(123)
@@ -91,6 +101,16 @@ test_that("bootstrap_IQR returns correct length", {
   boot <- bootstrap_IQR(x, num_samples = 1000)
 
   expect_length(boot, 1000)
+})
+
+
+test_that("bootstrap_IQR is reproducible with same seed", {
+  x <- c("1,000", "2,000", "3,000", "4,000")
+
+  boot1 <- bootstrap_IQR(x, num_samples = 1000, seed = 123)
+  boot2 <- bootstrap_IQR(x, num_samples = 1000, seed = 123)
+
+  expect_equal(boot1, boot2)
 })
 
 
