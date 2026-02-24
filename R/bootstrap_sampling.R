@@ -47,6 +47,7 @@ IQR_rmna <- function(data){
 #' @description Cleans a vector, then generates a bootstrap distribution of means by resampling with replacement.
 #' @param data the vector containing the dataset we wish to compute the mean of.
 #' @param num_samples the number of bootstrap samples to generate (default 5000).
+#' @param seed represents the random seed (default 1)
 #' @return Numeric vector of length `num_samples`, containing bootstrap means.
 #' @examples
 #' x <- c("1,000", "2,500", "", NA, "1,200", "1,800")
@@ -54,7 +55,8 @@ IQR_rmna <- function(data){
 #' boot_means
 #' hist(boot_means, main = "Bootstrap Means", xlab = "Mean Value", col = "skyblue")
 #' @export
-bootstrap_means <- function(data, num_samples = 5000){
+bootstrap_means <- function(data, num_samples = 5000, seed = 1){
+  set.seed(seed)
   data = get_clean_numeric(data)
   n = length(data)
   boot_means <- numeric(num_samples)
@@ -69,6 +71,7 @@ bootstrap_means <- function(data, num_samples = 5000){
 #' @description Cleans a vector, then generates a bootstrap distribution of the IQR by resampling with replacement.
 #' @param data the vector containing the dataset we wish to compute the IQR of.
 #' @param num_samples the number of bootstrap samples to generate (default 5000).
+#' @param seed represents the random seed (default 1)
 #' @return Numeric vector of length `num_samples`, containing bootstrap IQR
 #' @examples
 #' x <- c("1,000", "2,500", "", NA, "1,200", "1,800")
@@ -76,7 +79,8 @@ bootstrap_means <- function(data, num_samples = 5000){
 #' boot_IQR
 #' hist(boot_IQR, main = "Bootstrap IQR", xlab = "IQR Value", col = "skyblue")
 #' @export
-bootstrap_IQR <- function(data, num_samples = 5000){
+bootstrap_IQR <- function(data, num_samples = 5000, seed = 1){
+  set.seed(seed)
   data = get_clean_numeric(data)
   n = length(data)
   boot_IQR <- numeric(num_samples)
@@ -88,24 +92,3 @@ bootstrap_IQR <- function(data, num_samples = 5000){
   return(boot_IQR)
 }
 
-rawdata = read.csv("rawdata.csv")
-x <- rawdata$RFD
-
-boot_means <- bootstrap_means(x, num_samples = 5000)
-
-hist(boot_means,
-     main = "Bootstrap Distribution of Means",
-     xlab = "Bootstrap Means",
-     col = "skyblue",
-     prob = TRUE)
-abline(v = mean_rmna(x), col = "red", lwd = 2)
-
-boot_IQR <- bootstrap_IQR(x, num_samples = 5000)
-
-hist(boot_IQR,
-     main = "Bootstrap Distribution of IQR",
-     xlab = "Bootstrap IQR",
-     col = "lightgreen",
-     prob = TRUE)
-
-abline(v = IQR_rmna(x), col = "red", lwd = 2)
