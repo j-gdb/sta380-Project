@@ -4,12 +4,14 @@
 \alias{bootstrap_means}
 \title{Bootstrap Sampling of the Mean.}
 \usage{
-bootstrap_means(data, num_samples = 5000)
+bootstrap_means(data, num_samples = 5000, seed = 1)
 }
 \arguments{
 \item{data}{the vector containing the dataset we wish to compute the mean of.}
 
 \item{num_samples}{the number of bootstrap samples to generate (default 5000).}
+
+\item{seed}{represents the random seed (default 1)}
 }
 \value{
 Numeric vector of length \code{num_samples}, containing bootstrap means.
@@ -19,7 +21,7 @@ Cleans a vector, then generates a bootstrap distribution of means by resampling 
 }
 \examples{
 x <- c("1,000", "2,500", "", NA, "1,200", "1,800")
-boot_means <- bootstrap_means(x, num_samples = 10)
+boot_means <- bootstrap_means(x, num_samples = 10, seed = 380)
 boot_means
 hist(boot_means, main = "Bootstrap Means", xlab = "Mean Value", col = "skyblue")
 }

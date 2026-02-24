@@ -1,5 +1,5 @@
-#' Clean a numeric vector.
-#' @description Cleans an inputted vector of decimal points, characters, and missing values.
+#' Removes decimal points, strings and NA values from a vector.
+#' @description Removes decimal points, characters, strings, and missing values from an inputted vector.
 #' @param data the vector to clean.
 #' @return A vector containing the cleaned data.
 #' @examples
@@ -35,6 +35,7 @@ mean_rmna <- function(data){
 #' @examples
 #' x <- c("1,000", "2,500", "", NA, 1)
 #' IQR_rmna(x)
+#' @importFrom stats quantile
 #' @export
 IQR_rmna <- function(data){
   data = get_clean_numeric(data)
@@ -51,7 +52,7 @@ IQR_rmna <- function(data){
 #' @return Numeric vector of length `num_samples`, containing bootstrap means.
 #' @examples
 #' x <- c("1,000", "2,500", "", NA, "1,200", "1,800")
-#' boot_means <- bootstrap_means(x, num_samples = 10)
+#' boot_means <- bootstrap_means(x, num_samples = 10, seed = 380)
 #' boot_means
 #' hist(boot_means, main = "Bootstrap Means", xlab = "Mean Value", col = "skyblue")
 #' @export
@@ -75,7 +76,7 @@ bootstrap_means <- function(data, num_samples = 5000, seed = 1){
 #' @return Numeric vector of length `num_samples`, containing bootstrap IQR
 #' @examples
 #' x <- c("1,000", "2,500", "", NA, "1,200", "1,800")
-#' boot_IQR <- bootstrap_IQR(x, num_samples = 10)
+#' boot_IQR <- bootstrap_IQR(x, num_samples = 10, seed = 380)
 #' boot_IQR
 #' hist(boot_IQR, main = "Bootstrap IQR", xlab = "IQR Value", col = "skyblue")
 #' @export
@@ -91,4 +92,3 @@ bootstrap_IQR <- function(data, num_samples = 5000, seed = 1){
   }
   return(boot_IQR)
 }
-

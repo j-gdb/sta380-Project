@@ -1,5 +1,5 @@
 ---
-title: "Bootstrap Sample Vignette"
+title: "Bootstrap Resample Vignette"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{bootstrap-vingette}
@@ -10,6 +10,7 @@ nocite: "@*"
 ---
 
 ```{r, include = FALSE}
+options(rmarkdown.html_vignette.check_title = FALSE)
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -34,16 +35,15 @@ Bootstrap resampling works by taking the original dataset with length $n$, and r
 ## Loading Sample Data
 We can use a sample dataset, such as the `mtcars` dataset. We will be using the miles per gallon column for this example.
 ```{r}
-set.seed(1)
 data("mtcars")
 x = mtcars$mpg
 ```
 
 ## Bootstrap Resampling for the Mean
-For this example, we will resample from the dataset 1000 times. By default, this package will resample 5000 times.
+For this example, we will resample from the dataset 1000 times. By default, this package will resample 5000 times. The functions also allow for you to pass in a random seed. Otherwise, it will be fixed to the seed `1`. For this example, we will use the seed `42`.
 ```{r}
 true_mean = mean(x)
-boot_means = bootstrap_means(x, num_samples = 1000)
+boot_means = bootstrap_means(x, num_samples = 1000, seed = 42)
 ```
 
 We can plot the distribution in a histogram, and compare it to the true mean, denoted by the red line.
@@ -57,10 +57,10 @@ abline(v = true_mean, col = "red", lwd = 2)
 ```
 
 ## Bootstrap Resampling for IQR
-Again, for this example, we will resample from the dataset 1000 times.
+Again, for this example, we will resample from the dataset 1000 times, and use the random seed `42`.
 ```{r}
 true_IQR = IQR(x)
-boot_IQR = bootstrap_IQR(x, num_samples = 1000)
+boot_IQR = bootstrap_IQR(x, num_samples = 1000, seed = 42)
 ```
 
 We can plot the distribution in a histogram, and compare it to the true IQR, denoted by the red line.
@@ -74,6 +74,6 @@ abline(v = true_IQR, col = "red", lwd = 2)
 ```
 
 # Generative AI Statement
-We have used generative AI to help us set up the development environment, such as creating it as an R project and debugging errors when trying to generate the roxygen comments.
+We have used generative AI to help us set up the development environment, such as creating it as an R project and debugging errors when trying to generate the roxygen comments. We also used generative AI to help fix warnings, such as adding imports and editing the DESCRIPTION file, and adding the license.
 
 # References

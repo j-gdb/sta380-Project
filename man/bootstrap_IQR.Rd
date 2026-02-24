@@ -4,12 +4,14 @@
 \alias{bootstrap_IQR}
 \title{Bootstrap Sampling for IQR.}
 \usage{
-bootstrap_IQR(data, num_samples = 5000)
+bootstrap_IQR(data, num_samples = 5000, seed = 1)
 }
 \arguments{
 \item{data}{the vector containing the dataset we wish to compute the IQR of.}
 
 \item{num_samples}{the number of bootstrap samples to generate (default 5000).}
+
+\item{seed}{represents the random seed (default 1)}
 }
 \value{
 Numeric vector of length \code{num_samples}, containing bootstrap IQR
@@ -19,7 +21,7 @@ Cleans a vector, then generates a bootstrap distribution of the IQR by resamplin
 }
 \examples{
 x <- c("1,000", "2,500", "", NA, "1,200", "1,800")
-boot_IQR <- bootstrap_IQR(x, num_samples = 10)
+boot_IQR <- bootstrap_IQR(x, num_samples = 10, seed = 380)
 boot_IQR
 hist(boot_IQR, main = "Bootstrap IQR", xlab = "IQR Value", col = "skyblue")
 }
