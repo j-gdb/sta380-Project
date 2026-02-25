@@ -1,7 +1,7 @@
-rawdata = read.csv("rawdata.csv")
-x <- rawdata$RFD
+library(BootstrapResample)
+x = rawdata$RHD
 
-boot_means <- bootstrap_means(x, num_samples = 5000)
+boot_means <- bootstrap_means(x, num_samples = 5000, seed = 10)
 
 hist(boot_means,
      main = "Bootstrap Distribution of Means",
@@ -10,7 +10,7 @@ hist(boot_means,
      prob = TRUE)
 abline(v = mean_rmna(x), col = "red", lwd = 2)
 
-boot_IQR <- bootstrap_IQR(x, num_samples = 5000)
+boot_IQR <- bootstrap_IQR(x, num_samples = 5000, seed = 2)
 
 hist(boot_IQR,
      main = "Bootstrap Distribution of IQR",
@@ -19,4 +19,3 @@ hist(boot_IQR,
      prob = TRUE)
 
 abline(v = IQR_rmna(x), col = "red", lwd = 2)
-

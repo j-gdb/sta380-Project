@@ -35,12 +35,11 @@ mean_rmna <- function(data){
 #' @examples
 #' x <- c("1,000", "2,500", "", NA, 1)
 #' IQR_rmna(x)
-#' @importFrom stats quantile
 #' @export
 IQR_rmna <- function(data){
   data = get_clean_numeric(data)
-  Q1 <- as.numeric(quantile(data, 0.25))
-  Q3 <- as.numeric(quantile(data, 0.75))
+  Q1 <- as.numeric(stats::quantile(data, 0.25))
+  Q3 <- as.numeric(stats::quantile(data, 0.75))
   return(Q3 - Q1)
 }
 

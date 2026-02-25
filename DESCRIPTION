@@ -1,10 +1,10 @@
 Package: BootstrapResample
-Title: What the Package Does (One Line, Title Case)
+Title: Bootstrap Mean and IQR
 Version: 0.0.0.9000
-Authors@R: 
-    person("Jacob", "Gipp", , "jacob.gipp@mail.utoronto.ca", role = c("aut", "cre"))
-    person("Tristan", "Copplestone", , "tristan.copplestone@mail.utoronto.ca", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Authors@R: c(
+    person("Jacob", "Gipp", , "jacob.gipp@mail.utoronto.ca", role = c("aut", "cre")),
+    person("Tristan", "Copplestone", , "tristan.copplestone@mail.utoronto.ca", role = c("aut")))
+Description: This package allows for the calculation of the mean and IQR of vectors using bootstrap resampling. It includes helpers and a dataset for reaction time measured using a Nintendo Wii Balance Board.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -12,6 +12,10 @@ RoxygenNote: 7.3.3
 Suggests: 
     knitr,
     rmarkdown,
-    testthat,
+    testthat (>= 3.0.0),
     remotes
 VignetteBuilder: knitr
+Depends:
+    R (>= 3.5)
+LazyData: true
+Config/testthat/edition: 3

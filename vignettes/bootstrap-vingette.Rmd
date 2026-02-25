@@ -74,6 +74,6 @@ abline(v = true_IQR, col = "red", lwd = 2)
 ```
 
 # Generative AI Statement
-We have used generative AI to help us set up the development environment, such as creating it as an R project and debugging errors when trying to generate the roxygen comments. We also used generative AI to help fix warnings, such as adding imports and editing the DESCRIPTION file, and adding the license.
+We have used generative AI to help us set up the development environment, such as creating it as an R project and debugging errors when trying to generate the roxygen comments. We also used generative AI to help fix warnings, such as editing the DESCRIPTION file and fixing a corrupted package.
 
 # References
