@@ -1,5 +1,5 @@
-#' Removes decimal points, strings and NA values from a vector.
-#' @description Removes decimal points, characters, strings, and missing values from an inputted vector.
+#' Removes decimal points and NA values from a vector, and turns strings numeric.
+#' @description Removes decimal points and missing values from an inputted vector, and converts all strings and characters to numeric values.
 #' @param data the vector to clean.
 #' @return A vector containing the cleaned data.
 #' @examples

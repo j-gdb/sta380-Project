@@ -2,7 +2,7 @@
 % Please edit documentation in R/bootstrap_sampling.R
 \name{get_clean_numeric}
 \alias{get_clean_numeric}
-\title{Removes decimal points, strings and NA values from a vector.}
+\title{Removes decimal points and NA values from a vector, and turns strings numeric.}
 \usage{
 get_clean_numeric(data)
 }
@@ -13,7 +13,7 @@ get_clean_numeric(data)
 A vector containing the cleaned data.
 }
 \description{
-Removes decimal points, characters, strings, and missing values from an inputted vector.
+Removes decimal points and missing values from an inputted vector, and converts all strings and characters to numeric values.
 }
 \examples{
 x <- c("1,000", "2,500", "", NA, 1)
