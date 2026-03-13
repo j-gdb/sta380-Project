@@ -70,8 +70,8 @@ ui <- fluidPage(
   tags$script(HTML("document.addEventListener('DOMContentLoaded', function() {
       const dog = document.getElementById('dog');
       const size = 200;
-      let x = Math.random() * (window.innerWidth - size);
-      let y = Math.random() * (window.innerHeight - size)
+      let x = window.innerWidth/2 //Math.random() * (window.innerWidth - size);
+      let y = window.innerHeight/2 //Math.random() * (window.innerHeight - size)
       let dx = 5;
       let dy = 5;
       function bounce() {
