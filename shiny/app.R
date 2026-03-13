@@ -1,10 +1,6 @@
 library(shiny)
-library(here)
 
-load(here("data","rawdata.rda"))
-
-source(here("R","bootstrap_sampling.R"))
-source(here("misc","histograms.R"))
+load("data/rawdata.rda")
 
 #preparing age ranges for later
 age_min <- min(rawdata$age_years, na.rm = TRUE)
@@ -65,46 +61,7 @@ ui <- fluidPage(
 )
 
 server <- function(input, output) {
-
-  filtered_data <- reactive({
-    df <- rawdata
-    if(input$gender != "All"){
-      gender_code <- ifelse(input$gender == "Male",1,2)
-      df <- df[df$gender == gender_code,]
-    }
-    df <- df[
-      df$age_years >= input$age[1] &
-        df$age_years <= input$age[2],
-    ]
-    df
-  })
-
-  selected_vector <- reactive({
-    df <- filtered_data()
-    vec <- switch(input$dataset,
-                  "Dominant Hand" = df$RHD,
-                  "Non Dominant Hand" = df$RHND,
-                  "Dominant Foot" = df$RFD,
-                  "Non Dominant Foot" = df$RFND
-    )
-    vec
-  })
-
-  output$bootstrap_plot <- renderPlot({
-    vec <- selected_vector()
-    if(length(vec) == 0){
-      plot.new()
-      text(0.5,0.5,"No data available for selected filters")
-      return()
-    }
-    plot_bootstrap_hist(
-      x = vec,
-      statistic = input$statistic,
-      num_samples = input$resamples,
-      seed = input$seed,
-      colour = input$colour
-    )
-  })
+  source(file.path("server-plots.r"), local=TRUE)$value
 }
 
 shinyApp(ui = ui, server = server)
