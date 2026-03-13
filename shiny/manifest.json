@@ -6,7 +6,7 @@
     "appmode": "static",
     "primary_rmd": null,
     "primary_html": "Basic_Implementation_Check_Artifacts/Bootstrap_Sample_Vignette.html",
-    "content_category": null,
+    "content_category": "site",
     "has_parameters": false
   },
   "packages": null,
