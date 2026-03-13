@@ -57,7 +57,38 @@ ui <- fluidPage(
     mainPanel(
       plotOutput("bootstrap_plot")
     )
-  )
+  ),
+  tags$img(
+    src = "dog.png",
+    id = "dog",
+    style="
+    position: fixed;
+    width: 200px;
+    z-index: 9999;
+    pointer-events: none;"
+  ),
+  tags$script(HTML("document.addEventListener('DOMContentLoaded', function() {
+      const dog = document.getElementById('dog');
+      const size = 200;
+      let x = Math.random() * (window.innerWidth - size);
+      let y = Math.random() * (window.innerHeight - size)
+      let dx = 5;
+      let dy = 5;
+      function bounce() {
+        const w = window.innerWidth - size;
+        const h = window.innerHeight - size;
+        x += dx;
+        y += dy;
+
+        if (x <= 0 || x >= w) dx = -dx;
+        if (y <= 0 || y >= h) dy = -dy;
+        dog.style.left = x + 'px';
+        dog.style.top = y + 'px';
+        requestAnimationFrame(bounce);
+      }
+      bounce();
+    });"
+  ))
 )
 
 server <- function(input, output) {
