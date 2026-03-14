@@ -67,3 +67,39 @@ output$bootstrap_plot <- renderPlot({
   )
 })
 
+output$summary_table <- renderTable({
+
+  df <- filtered_data()
+
+  vec <- switch(input$dataset,
+                "Dominant Hand" = df$RHD,
+                "Non Dominant Hand" = df$RHND,
+                "Dominant Foot" = df$RFD,
+                "Non Dominant Foot" = df$RFND)
+
+  vec_clean <- get_clean_numeric(vec)
+
+  if(length(vec_clean) == 0){
+    return(data.frame(Statistic = NA, Observed = NA, Min = NA, Max = NA))
+  }
+
+  if(input$statistic == "Mean"){
+    boot_vals <- bootstrap_means(vec_clean, num_samples = 5000, seed = 1)
+    data.frame(
+      Statistic = "Mean",
+      Observed = mean_rmna(vec_clean),
+      Min = min(boot_vals),
+      Max = max(boot_vals)
+    )
+  } else {
+    boot_vals <- bootstrap_IQR(vec_clean, num_samples = 5000, seed = 1)
+    data.frame(
+      Statistic = "IQR",
+      Observed = IQR_rmna(vec_clean),
+      Min = min(boot_vals),
+      Max = max(boot_vals)
+    )
+  }
+
+})
+
