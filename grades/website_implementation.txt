@@ -1,0 +1,13 @@
+I think the dog was better than the cat (dog person, sorry)
+
+I feel like the one thing your project is really missing is actually having a good description of the actual dataset.
+
+You describe what bootstrapping is, but ideally (from your project description) it comes from a dataset.
+
+It would also be useful if you described it on the website itself, including the meaning of "dominant hand" or "non-dominant" in this context.
+
+In terms of aesthetics: I do genuinely think the cat/dog was a pretty funny addition and it's fine to have an optional button.
+
+I wonder if there are good possible animations for intros or transitions of graphs that aren't just shinycssloaders (this may not exist).
+
+1/1
