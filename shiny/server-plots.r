@@ -65,11 +65,11 @@ plot_bootstrap_hist <- function(x, statistic="Mean", num_samples=5000, seed=1, c
   if(statistic=="Mean"){
     boot_vals <- bootstrap_means(vec_clean, num_samples=num_samples, seed=seed)
     true_val <- mean_rmna(vec_clean)
-    xlab_text <- "Bootstrap Means"
+    xlab_text <- "Bootstrap Means (milliseconds)"
   } else {
     boot_vals <- bootstrap_IQR(vec_clean, num_samples=num_samples, seed=seed)
     true_val <- IQR_rmna(vec_clean)
-    xlab_text <- "Bootstrap IQR"
+    xlab_text <- "Bootstrap IQR (milliseconds)"
   }
 
   hist(boot_vals, col=colour, border="white", prob=TRUE,
@@ -84,6 +84,8 @@ output$bootstrap_plot <- renderPlot({
   vec1 <- selected_vector()
   vec2 <- if(input$dataset2 != "None") selected_vector2() else NULL
 
+  colour2 <- if (!is.null(input$colour2)) input$colour2 else "firebrick"
+
   if(length(vec1) == 0){
     plot.new()
     text(0.5,0.5,"No data available for selected filters")
@@ -95,7 +97,7 @@ output$bootstrap_plot <- renderPlot({
     plot_bootstrap_hist(vec1, statistic = input$statistic, num_samples = input$resamples,
                         seed = input$seed, colour = input$colour)
     plot_bootstrap_hist(vec2, statistic = input$statistic, num_samples = input$resamples,
-                        seed = input$seed, colour = "steelblue")
+                        seed = input$seed, colour = colour2)
     par(mfrow = c(1,1))
   } else {
     plot_bootstrap_hist(vec1, statistic = input$statistic, num_samples = input$resamples,

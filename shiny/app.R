@@ -72,7 +72,7 @@ ui <- fluidPage(
                                      value = 1),
                ),
                tabPanel("Style",
-                        h3("Cosmetics", style = "text-align: center;"),
+                        h3("Style", style = "text-align: center;"),
                         selectInput("colour",
                                     "Histogram Colour",
                                     choices = c(
@@ -84,7 +84,22 @@ ui <- fluidPage(
                                       "Slate Gray" = "slategray",
                                       "Violet Red" = "violetred"
                                     ),
-                                    selected = "burlywood"
+                                    selected = "burlywood"),
+
+                        conditionalPanel(
+                          condition = "input.dataset2 != 'None'",
+                          selectInput(
+                            "colour2",
+                            "Comparison Histogram Colour",
+                            choices = c(
+                              "Firebrick" = "firebrick",
+                              "Dark Orange" = "darkorange",
+                              "Purple" = "purple",
+                              "Forest Green" = "forestgreen",
+                              "Steel Blue" = "steelblue",
+                              "Goldenrod" = "goldenrod"
+                            ),
+                            selected = "firebrick")
                         )
                ),
                tabPanel("Dog",
@@ -110,7 +125,7 @@ ui <- fluidPage(
              div(
               class = "card",
               style = "padding: 15px; margin-bottom: 20px; background-color: var(--bs-secondary-bg); border-radius: 8px;",
-              h4("Histogram Description"),
+              h4("Interpretation and Methodology"),
                p("This histogram shows the distribution of the selected statistic (Mean or IQR) for a filtered subset of participants from a reaction time study. The dataset contains 354 healthy participants aged 20 to 99 years. Participants completed reaction time tasks (measured in milliseconds) using both their dominant and non-dominant hands and feet, where ", strong("dominant"), " refers to the side they naturally favour for everyday tasks like writing. Reaction times were measured using a Nintendo Wii Balance Board, which recorded response times as participants reacted to stimuli by applying pressure through their hands or feet. Additional participant information, including age and gender, was also collected."),
                p("The goal of this app is to allow users to explore how reaction time performance varies across different groups and conditions, and to visualize the variability and uncertainty of these estimates using bootstrap resampling."),
                p("The bootstrap distribution is calculated by repeatedly resampling the filtered dataset with replacement, computing the chosen statistic for each resample, and plotting the resulting values. The black vertical line represents the observed value of the statistic computed directly from the filtered data.")
