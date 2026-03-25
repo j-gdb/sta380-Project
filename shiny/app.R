@@ -1,4 +1,5 @@
 library(shiny)
+library(shinyWidgets)
 
 load("data/rawdata.rda")
 
@@ -14,23 +15,32 @@ ui <- fluidPage(
     column(4,
            div(
              class = "card",
-             style = "padding: 12px; background-color: #e9ecef; border-radius: 8px;",
+             style = "padding: 12px; background-color: #e9ecef; border-radius: 8px; width: 100%;",
              tabsetPanel(
+               type = "tabs",
                tabPanel("Data",
-                        h3("Dataset"),
+                        h3("Dataset", style = "text-align: center;"),
                         selectInput("dataset",
                                     "Dataset",
                                     choices = c(
                                       "Dominant Hand",
                                       "Non Dominant Hand",
                                       "Dominant Foot",
-                                      "Non Dominant Foot"
-                                    )
+                                      "Non Dominant Foot")
+                        ),
+                        selectInput("dataset2",
+                                    "Compare With",
+                                    choices = c("None",
+                                                "Dominant Hand",
+                                                "Non Dominant Hand",
+                                                "Dominant Foot",
+                                                "Non Dominant Foot"),
+                                    selected = "None"
                         ),
                         selectInput("gender",
                                     "Gender",
                                     choices = c("All", "Male", "Female")
-                        ),
+                                    ),
                         sliderInput("age",
                                     "Age Range",
                                     min = age_min,
@@ -39,23 +49,24 @@ ui <- fluidPage(
                         )
                ),
                tabPanel("Statistic",
+                        h3("Statistic", style = "text-align: center;"),
                         radioButtons("statistic",
                                      "Statistic",
                                      choices = c("Mean", "IQR")
                         )
                ),
                tabPanel("Bootstrap",
+                        h3("Bootstrap", style = "text-align: center;"),
                         numericInput("resamples",
                                      "Bootstrap Samples",
                                      value = 5000,
-                                     min = 100
-                        ),
+                                     min = 100),
                         numericInput("seed",
                                      "Random Seed",
-                                     value = 1
-                        )
+                                     value = 1),
                ),
                tabPanel("Appearance",
+                        h3("Cosmetics", style = "text-align: center;"),
                         selectInput("colour",
                                     "Histogram Colour",
                                     choices = c(
@@ -77,18 +88,11 @@ ui <- fluidPage(
 
            div(
              class = "card",
-             style = "
-          padding: 12px;
-          background-color: #e9ecef;
-          border-radius: 8px;
-          margin-top: 15px;
-          position: sticky;
-          top: 20px;
-          z-index: 998;
-        ",
-             h4("Summary of Filtered Data"),
+             style = "padding: 12px; background-color: #e9ecef; border-radius: 8px; margin-top: 15px; width: 100%;",
+             h4("Summary of Filtered Data", style = "text-align: center;"),
              tableOutput("summary_table")
            )
+
     ),
 
     column(8,
