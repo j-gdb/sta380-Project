@@ -1,7 +1,7 @@
 {
   "version": 1,
   "locale": "en_CA",
-  "platform": "4.5.2",
+  "platform": "4.5.3",
   "metadata": {
     "appmode": "shiny",
     "primary_rmd": null,
@@ -1007,7 +1007,10 @@
   },
   "files": {
     "app.R": {
-      "checksum": "37117cf37f553230b237ebd844918c41"
+      "checksum": "104fa3d90e7aa49a584a93cdc739de58"
+    },
+    "bootstrap-vingette.pdf": {
+      "checksum": "8b675320094f4ead683bc267c828b25e"
     },
     "data/rawdata.rda": {
       "checksum": "5518f771fdd2301c878dcfa1bb18aef7"
@@ -1016,10 +1019,10 @@
       "checksum": "47bf307c9f26ef4d490ed68d2b4e9c88"
     },
     "server-plots.r": {
-      "checksum": "70889c3dd5a92440ad1bbbd26896cf1c"
+      "checksum": "6eae390cba35c9a0fa90857378c2428c"
     },
     "www/dog.png": {
-      "checksum": "d4f346b93c31ea10c68b77e5889c8abc"
+      "checksum": "7234c11f13ce9327cd75e0a7090b2c2f"
     }
   },
   "users": null
