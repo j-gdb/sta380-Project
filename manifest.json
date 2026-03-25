@@ -1,0 +1,145 @@
+{
+  "version": 1,
+  "locale": "en_CA",
+  "platform": "4.5.3",
+  "metadata": {
+    "appmode": "static",
+    "primary_rmd": null,
+    "primary_html": "Basic_Implementation_Check_Artifacts/Bootstrap_Sample_Vignette.html",
+    "content_category": null,
+    "has_parameters": false
+  },
+  "packages": null,
+  "files": {
+    ".Rbuildignore": {
+      "checksum": "2c91793325e43e6080f1f39c94684192"
+    },
+    ".RData": {
+      "checksum": "22e2978ab2db66c27ef8b5805ba6ae78"
+    },
+    "Basic_Implementation_Check_Artifacts/Bootstrap_Sample_Vignette.html": {
+      "checksum": "aba81fe88c847b7234761779a91d3581"
+    },
+    "Bootstrap_Sample_Vignette_files/MathJax.js": {
+      "checksum": "b2c103388b71bb3d11cbf9aa45fe9b68"
+    },
+    "data/rawdata.rda": {
+      "checksum": "5518f771fdd2301c878dcfa1bb18aef7"
+    },
+    "DESCRIPTION": {
+      "checksum": "f294bd3e8adc6d79599377ffd8f8e964"
+    },
+    "doc/bootstrap-vingette.html": {
+      "checksum": "cbb3d3fd622fc2c2d1fa1ba2391b725a"
+    },
+    "doc/bootstrap-vingette.pdf": {
+      "checksum": "8b675320094f4ead683bc267c828b25e"
+    },
+    "doc/bootstrap-vingette.R": {
+      "checksum": "0810c34e734364f6bc5cb4df88a2ec42"
+    },
+    "doc/bootstrap-vingette.Rmd": {
+      "checksum": "af051eb3a8f1b0b7ac67c2a40d637e61"
+    },
+    "grades/basic_implementation_check.txt": {
+      "checksum": "8ddbb4734c91aa370069efb9cd60f109"
+    },
+    "grades/proposal.txt": {
+      "checksum": "075334b143d8290c8abebe9d9f64c828"
+    },
+    "grades/website_implementation.txt": {
+      "checksum": "10c91c52836c37bbc4ec4fa0d207ddb8"
+    },
+    "LICENSE": {
+      "checksum": "6fc4a571b183a9d464a1694dddbbb1e1"
+    },
+    "LICENSE.md": {
+      "checksum": "1ae7d60b7b369158d879c401d9dae55e"
+    },
+    "man/bootstrap_IQR.Rd": {
+      "checksum": "3c5e117f533a86832c4578a4236fdd91"
+    },
+    "man/bootstrap_means.Rd": {
+      "checksum": "7d7a113a981b142bec3e0e0a65dc77a3"
+    },
+    "man/get_clean_numeric.Rd": {
+      "checksum": "7e619325fd41777cf429fbf17d153fa5"
+    },
+    "man/IQR_rmna.Rd": {
+      "checksum": "374674d95f6ffbd9a5d30336a8200b47"
+    },
+    "man/mean_rmna.Rd": {
+      "checksum": "c74c419332ff851d37e3f0b89424c209"
+    },
+    "man/rawdata.Rd": {
+      "checksum": "e36c744a7bc2e4063d54b5b7d69c2d5f"
+    },
+    "Meta/vignette.rds": {
+      "checksum": "288a13ceecbfc412c0388a78c4ad4011"
+    },
+    "misc/histograms.R": {
+      "checksum": "1d70b580a0a87e28d2142d090bb53459"
+    },
+    "NAMESPACE": {
+      "checksum": "16b7c99caaaecf21cd03cc1cbbe64326"
+    },
+    "paper.pdf": {
+      "checksum": "ad1856a232a7001a46e3c51c45cf7736"
+    },
+    "Proposal/bibliography.bib": {
+      "checksum": "013981d03013bcf3e98cbb288436e756"
+    },
+    "Proposal/main.tex": {
+      "checksum": "421ec0cb115dfe03da28e820d8d8bf88"
+    },
+    "Proposal/STA380_Proposal.pdf": {
+      "checksum": "188bf01c5d37327a68caf5ecb26192b6"
+    },
+    "R/bootstrap_sampling.R": {
+      "checksum": "47bf307c9f26ef4d490ed68d2b4e9c88"
+    },
+    "R/data.r": {
+      "checksum": "1aa487d870f1e9eeb0a35e2044bcefac"
+    },
+    "rawdata.csv": {
+      "checksum": "e4220c9a4d24c4a09148aecef3e3becf"
+    },
+    "README.md": {
+      "checksum": "8437af95bc962bae7a5e316fabfd23c3"
+    },
+    "shiny/app.R": {
+      "checksum": "104fa3d90e7aa49a584a93cdc739de58"
+    },
+    "shiny/bootstrap-vingette.pdf": {
+      "checksum": "8b675320094f4ead683bc267c828b25e"
+    },
+    "shiny/data/rawdata.rda": {
+      "checksum": "5518f771fdd2301c878dcfa1bb18aef7"
+    },
+    "shiny/R/bootstrap_sampling.R": {
+      "checksum": "47bf307c9f26ef4d490ed68d2b4e9c88"
+    },
+    "shiny/server-plots.r": {
+      "checksum": "6eae390cba35c9a0fa90857378c2428c"
+    },
+    "shiny/www/dog.png": {
+      "checksum": "7234c11f13ce9327cd75e0a7090b2c2f"
+    },
+    "STA380GroupForm.xlsx": {
+      "checksum": "841f40c52e99fa29f4858f7398d246ff"
+    },
+    "tests/testthat.R": {
+      "checksum": "2e8c39bf45a7b8fac6329622a684b5e9"
+    },
+    "tests/testthat/test_functions.R": {
+      "checksum": "4c28da65232787d2f6c7c7cb1024d830"
+    },
+    "vignettes/bibliography.bib": {
+      "checksum": "a3c8dab0f2e28f74141040de208ad8d1"
+    },
+    "vignettes/bootstrap-vingette.Rmd": {
+      "checksum": "af051eb3a8f1b0b7ac67c2a40d637e61"
+    }
+  },
+  "users": null
+}

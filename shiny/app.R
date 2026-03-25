@@ -1,4 +1,5 @@
 library(shiny)
+library(bslib)
 
 load("data/rawdata.rda")
 
@@ -7,14 +8,14 @@ age_min <- min(rawdata$age_years, na.rm = TRUE)
 age_max <- max(rawdata$age_years, na.rm = TRUE)
 
 ui <- fluidPage(
-
+  theme = bs_theme(bootswatch = "flatly"),
   titlePanel("How Fast are your Limbs? Measured by Bootstrapping"),
-
+  input_dark_mode(id = "dark_mode", mode = "light"),
   fluidRow(
     column(4,
            div(
              class = "card",
-             style = "padding: 12px; background-color: #e9ecef; border-radius: 8px; width: 100%;",
+             style = "padding: 12px; background-color: var(--bs-secondary-bg); border-radius: 8px; width: 100%;",
              tabsetPanel(
                type = "tabs",
                tabPanel("Data",
@@ -80,14 +81,14 @@ ui <- fluidPage(
                                     selected = "burlywood"
                         )
                ),
-               tabPanel("Cat",
-                        actionButton("toggle_dog", "Release the Cat"))
+               tabPanel("Dog",
+                        actionButton("toggle_dog", "Release the Dog"))
              )
            ),
 
            div(
              class = "card",
-             style = "padding: 12px; background-color: #e9ecef; border-radius: 8px; margin-top: 15px; width: 100%;",
+             style = "padding: 12px; background-color: var(--bs-secondary-bg); border-radius: 8px; margin-top: 15px; width: 100%;",
              h4("Summary of Filtered Data", style = "text-align: center;"),
              tableOutput("summary_table")
            )
@@ -97,29 +98,29 @@ ui <- fluidPage(
     column(8,
            div(
              class = "card",
-             style = "padding: 15px; margin-bottom: 20px; background-color: #e9ecef; border-radius: 8px;",
+             style = "padding: 15px; margin-bottom: 20px; background-color: var(--bs-secondary-bg); border-radius: 8px;",
              h2("Bootstrap Histogram"),
              plotOutput("bootstrap_plot", height = "450px"),
              div(
-               class = "card",
-               style = "padding: 15px; margin-bottom: 20px; background-color: #e9ecef; border-radius: 8px;",
-               h4("Histogram Description"),
-               p("This histogram shows the distribution of the selected statistic (Mean or IQR) for a filtered subset of participants from a reaction time study. In the original study, participants completed reaction time tasks using both their dominant and non-dominant hands and feet. Reaction times were measured using a Nintendo Wii Balance Board, which recorded response times as participants reacted to stimuli by applying pressure through their hands or feet. Additional participant information, including age and gender, was also collected."),
+              class = "card",
+              style = "padding: 15px; margin-bottom: 20px; background-color: var(--bs-secondary-bg); border-radius: 8px;",
+              h4("Histogram Description"),
+               p("This histogram shows the distribution of the selected statistic (Mean or IQR) for a filtered subset of participants from a reaction time study. The dataset contains 354 healthy participants aged 20 to 99 years. Participants completed reaction time tasks (measured in milliseconds) using both their dominant and non-dominant hands and feet, where ", strong("dominant"), " refers to the side they naturally favour for everyday tasks like writing. Reaction times were measured using a Nintendo Wii Balance Board, which recorded response times as participants reacted to stimuli by applying pressure through their hands or feet. Additional participant information, including age and gender, was also collected."),
                p("The goal of this app is to allow users to explore how reaction time performance varies across different groups and conditions, and to visualize the variability and uncertainty of these estimates using bootstrap resampling."),
                p("The bootstrap distribution is calculated by repeatedly resampling the filtered dataset with replacement, computing the chosen statistic for each resample, and plotting the resulting values. The black vertical line represents the observed value of the statistic computed directly from the filtered data.")
-             )
            )
+        )
     )
 
   ),
 
   tags$script(HTML("document.addEventListener('DOMContentLoaded', function() {
       let dog = null;
-      const size = 220;
+      const size = 125;
 
       function createDog(){
         dog = document.createElement('img');
-        dog.src = 'catspin.gif' //I know it says dog
+        dog.src = 'dog.png'
         dog.style.position = 'fixed'
         dog.style.width = size + 'px'
         dog.style.zIndex = 9999
@@ -141,7 +142,7 @@ ui <- fluidPage(
           dog.style.left = x + 'px';
           dog.style.top = y + 'px';
           requestAnimationFrame(bounce);
-        }
+        }background-color: var(--bs-secondary-bg)
         document.body.appendChild(dog);
         bounce();
       }
