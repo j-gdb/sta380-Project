@@ -79,27 +79,30 @@ output$summary_table <- renderTable({
 
   vec_clean <- get_clean_numeric(vec)
 
-  if(length(vec_clean) == 0){
-    return(data.frame(Statistic = NA, Observed = NA, Min = NA, Max = NA))
-  }
-
   if(input$statistic == "Mean"){
-    boot_vals <- bootstrap_means(vec_clean, num_samples = 5000, seed = 1)
-    data.frame(
-      Statistic = "Mean",
-      Observed = mean_rmna(vec_clean),
-      Min = min(boot_vals),
-      Max = max(boot_vals)
+    boot_vals <- bootstrap_means(
+      vec_clean,
+      num_samples = input$resamples,
+      seed = input$seed
     )
-  } else {
-    boot_vals <- bootstrap_IQR(vec_clean, num_samples = 5000, seed = 1)
+
     data.frame(
-      Statistic = "IQR",
-      Observed = IQR_rmna(vec_clean),
-      Min = min(boot_vals),
-      Max = max(boot_vals)
+      Statistic = c("Bootstrap Mean", "Min", "Max"),
+      Value = c(mean(boot_vals), min(boot_vals), max(boot_vals))
+    )
+
+  } else {
+
+    boot_vals <- bootstrap_IQR(
+      vec_clean,
+      num_samples = input$resamples,
+      seed = input$seed
+    )
+
+    data.frame(
+      Statistic = c("Bootstrap IQR", "Min", "Max"),
+      Value = c(mean(boot_vals), min(boot_vals), max(boot_vals))
     )
   }
 
-})
-
+}, bordered = TRUE, hover = TRUE, digits = 2)

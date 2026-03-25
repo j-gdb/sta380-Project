@@ -68,10 +68,10 @@ ui <- fluidPage(
                  )
         ),
         tabPanel("Cat",
-                  actionButton("toggle_dog", "Release the Cat"))
+                 actionButton("toggle_dog", "Release the Cat"))
       ),
     ),
-  mainPanel(
+    mainPanel(
       h2("Bootstrap Histogram"),
       plotOutput("bootstrap_plot", height = "450px"),
       fluidRow(
@@ -81,11 +81,11 @@ ui <- fluidPage(
             class = "card",
             style = "padding: 15px; margin-bottom: 20px; background-color: #e9ecef; border-radius: 8px;",
             h4("Histogram Description"),
-            p(
-              "This histogram shows the distribution of the selected statistic (Mean or IQR) for the filtered subset of participants. It is calculated by repeatedly resampling the filtered dataset with replacement, computing the statistic for each resample, and plotting the resulting distribution of these bootstrap estimates. The red vertical line indicates the observed value of the statistic calculated directly from the filtered dataset. The goal of this app is to allow users to explore how the mean or IQR varies across different groups defined by age, gender, and dataset type, providing a visual sense of the uncertainty and variability of the statistic."
+            p("This histogram shows the distribution of the selected statistic (Mean or IQR) for a filtered subset of participants from a reaction time study. In the original study, participants completed reaction time tasks using both their dominant and non-dominant hands and feet. Reaction times were measured using a Nintendo Wii Balance Board, which recorded response times as participants reacted to stimuli by applying pressure through their hands or feet. Additional participant information, including age and gender, was also collected."),
+            p("The goal of this app is to allow users to explore how reaction time performance varies across different groups and conditions, and to visualize the variability and uncertainty of these estimates using bootstrap resampling."),
+            p("The bootstrap distribution is calculated by repeatedly resampling the filtered dataset with replacement, computing the chosen statistic for each resample, and plotting the resulting values. The black vertical line represents the observed value of the statistic computed directly from the filtered data."),
             )
           ),
-        ),
         column(
           width = 5,
           div(
@@ -147,7 +147,7 @@ ui <- fluidPage(
       })
     });"
   )
- )
+  )
 )
 
 server <- function(input, output, session) {
