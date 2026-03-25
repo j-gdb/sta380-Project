@@ -65,7 +65,7 @@ ui <- fluidPage(
                         h3("Bootstrap", style = "text-align: center;"),
                         numericInput("resamples",
                                      "Bootstrap Samples",
-                                     value = 5000,
+                                     value = 1000,
                                      min = 100),
                         numericInput("seed",
                                      "Random Seed",
