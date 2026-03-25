@@ -1,5 +1,4 @@
 library(shiny)
-library(shinyWidgets)
 
 load("data/rawdata.rda")
 
