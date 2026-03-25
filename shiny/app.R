@@ -9,8 +9,14 @@ age_max <- max(rawdata$age_years, na.rm = TRUE)
 
 ui <- fluidPage(
   theme = bs_theme(bootswatch = "flatly"),
-  titlePanel("How Fast are your Limbs? Measured by Bootstrapping"),
-  input_dark_mode(id = "dark_mode", mode = "light"),
+  fluidRow(
+    column(12,
+           div(style = "display: flex; justify-content: space-between; align-items: center;",
+               titlePanel("How Fast are your Limbs? Measured by Bootstrapping"),
+               input_dark_mode(id = "dark_mode", mode = "light")
+           )
+    )
+  ),
   fluidRow(
     column(4,
            div(
