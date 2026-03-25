@@ -65,7 +65,7 @@ ui <- fluidPage(
                                      "Random Seed",
                                      value = 1),
                ),
-               tabPanel("Appearance",
+               tabPanel("Style",
                         h3("Cosmetics", style = "text-align: center;"),
                         selectInput("colour",
                                     "Histogram Colour",
@@ -82,7 +82,7 @@ ui <- fluidPage(
                         )
                ),
                tabPanel("Dog",
-                        actionButton("toggle_dog", "Release the Dog"))
+                        actionButton("toggle_dog", "Release the Dog", class = "btn-outline-secondary"))
              )
            ),
 
@@ -142,7 +142,7 @@ ui <- fluidPage(
           dog.style.left = x + 'px';
           dog.style.top = y + 'px';
           requestAnimationFrame(bounce);
-        }background-color: var(--bs-secondary-bg)
+        }
         document.body.appendChild(dog);
         bounce();
       }
