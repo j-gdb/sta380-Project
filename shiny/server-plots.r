@@ -149,8 +149,49 @@ output$bootstrap_plot <- renderPlot({
 
 })
 
-output$summary_table <- renderTable({
+summary_data <- reactive({
   vec <- selected_vector()
-  if(length(vec) == 0) return(data.frame())
+  if (length(vec) == 0) return(data.frame())
   compute_summary(vec, statistic = input$statistic, num_samples = input$resamples, seed = input$seed)
+})
+
+summary_data_2 <- reactive({
+  req(input$dataset2 != "None")
+  vec <- selected_vector2()
+  if (length(vec) == 0) return(data.frame())
+  compute_summary(vec,statistic = input$statistic,num_samples = input$resamples,seed = input$seed)
+})
+
+output$summary_table <- renderTable({
+  summary_data()
 }, bordered = TRUE, hover = TRUE, digits = 2)
+
+output$summary_table_2 <- renderTable({
+  summary_data_2()
+}, bordered = TRUE, hover = TRUE, digits = 2)
+
+output$summary_tables <- renderUI({
+  if (input$dataset2 == "None") {
+    div(
+      class = "card",
+      style = "padding: 12px; background-color: var(--bs-secondary-bg); border-radius: 8px; margin-top: 15px; width: 100%;",
+      h4("Summary of Filtered Data", style = "text-align: center;"),
+      tableOutput("summary_table")
+    )
+  } else {
+    tagList(
+      div(
+        class = "card",
+        style = "padding: 12px; background-color: var(--bs-secondary-bg); border-radius: 8px; margin-top: 15px; width: 100%;",
+        h4("Primary Dataset", style = "text-align: center;"),
+        tableOutput("summary_table")
+      ),
+      div(
+        class = "card",
+        style = "padding: 12px; background-color: var(--bs-secondary-bg); border-radius: 8px; margin-top: 15px; width: 100%;",
+        h4("Comparison Dataset", style = "text-align: center;"),
+        tableOutput("summary_table_2")
+      )
+    )
+  }
+})

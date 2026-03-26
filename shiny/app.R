@@ -106,14 +106,7 @@ ui <- fluidPage(
                         actionButton("toggle_dog", "Release the Dog", class = "btn-outline-secondary"))
              )
            ),
-
-           div(
-             class = "card",
-             style = "padding: 12px; background-color: var(--bs-secondary-bg); border-radius: 8px; margin-top: 15px; width: 100%;",
-             h4("Summary of Filtered Data", style = "text-align: center;"),
-             tableOutput("summary_table")
-           )
-
+           uiOutput("summary_tables")
     ),
 
     column(8,
