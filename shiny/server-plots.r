@@ -65,9 +65,11 @@ plot_single_hist <- function(vec, statistic, num_samples, seed, colour, label){
   if(statistic == "Mean"){
     boot_vals <- bootstrap_means(vec_clean, num_samples, seed)
     true_val <- mean_rmna(vec_clean)
+    word = "Reaction Time (milliseconds)"
   } else {
     boot_vals <- bootstrap_IQR(vec_clean, num_samples, seed)
     true_val <- IQR_rmna(vec_clean)
+    word = "of Reaction Times (milliseconds)"
   }
 
   hist(
@@ -76,7 +78,7 @@ plot_single_hist <- function(vec, statistic, num_samples, seed, colour, label){
     border = "white",
     prob = TRUE,
     main = label,
-    xlab = paste(statistic, "(milliseconds)")
+    xlab = paste(statistic, word)
   )
 
   abline(v = true_val, col = "black", lwd = 2)
@@ -106,6 +108,7 @@ output$bootstrap_plot <- renderPlot({
   colour2 <- if(!is.null(input$colour2)) input$colour2 else "firebrick"
 
   stat_display <- if(input$statistic == "IQR") "IQR" else "Mean"
+  word = if(input$statistic == "IQR") " of Reaction Times for the " else " Reaction Time of "
 
   if(!is.null(vec2) && length(vec2) > 0){
 
@@ -117,7 +120,7 @@ output$bootstrap_plot <- renderPlot({
       num_samples = input$resamples,
       seed = input$seed,
       colour = input$colour,
-      label = paste("Bootstrap ", stat_display, " of ", input$dataset)
+      label = paste("Bootstrap ", stat_display, word, input$dataset)
     )
 
     plot_single_hist(
@@ -126,7 +129,7 @@ output$bootstrap_plot <- renderPlot({
       num_samples = input$resamples,
       seed = input$seed,
       colour = colour2,
-      label = paste("Bootstrap ", stat_display, " of ", input$dataset2)
+      label = paste("Bootstrap ", stat_display, word, input$dataset2)
     )
 
     par(mfrow = c(1, 1))
@@ -139,7 +142,7 @@ output$bootstrap_plot <- renderPlot({
       num_samples = input$resamples,
       seed = input$seed,
       colour = input$colour,
-      label = paste0("Bootstrap ", stat_display, " of ", input$dataset)
+      label = paste0("Bootstrap ", stat_display, word, input$dataset)
     )
 
   }
