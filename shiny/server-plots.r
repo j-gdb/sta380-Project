@@ -20,7 +20,6 @@ selected_vector <- reactive({
                 "Dominant Foot" = df$RFD,
                 "Non Dominant Foot" = df$RFND
   )
-  vec
 })
 
 selected_vector2 <- reactive({
@@ -32,10 +31,9 @@ selected_vector2 <- reactive({
                 "Dominant Foot" = df$RFD,
                 "Non Dominant Foot" = df$RFND
   )
-  vec
 })
 
-compute_summary <- function(vec, statistic = "Mean", num_samples = 5000, seed = 1){
+compute_summary <- function(vec, statistic = "Mean", num_samples = 1000, seed = 1){
   vec_clean <- get_clean_numeric(vec)
 
   if(length(vec_clean) == 0) return(data.frame())
@@ -60,49 +58,92 @@ compute_summary <- function(vec, statistic = "Mean", num_samples = 5000, seed = 
   )
 }
 
-plot_bootstrap_hist <- function(x, statistic="Mean", num_samples=5000, seed=1, colour="burlywood") {
-  vec_clean <- get_clean_numeric(x)
-  if(statistic=="Mean"){
-    boot_vals <- bootstrap_means(vec_clean, num_samples=num_samples, seed=seed)
+plot_single_hist <- function(vec, statistic, num_samples, seed, colour, label){
+
+  vec_clean <- get_clean_numeric(vec)
+
+  if(statistic == "Mean"){
+    boot_vals <- bootstrap_means(vec_clean, num_samples, seed)
     true_val <- mean_rmna(vec_clean)
-    xlab_text <- "Bootstrap Means (milliseconds)"
   } else {
-    boot_vals <- bootstrap_IQR(vec_clean, num_samples=num_samples, seed=seed)
+    boot_vals <- bootstrap_IQR(vec_clean, num_samples, seed)
     true_val <- IQR_rmna(vec_clean)
-    xlab_text <- "Bootstrap IQR (milliseconds)"
   }
 
-  hist(boot_vals, col=colour, border="white", prob=TRUE,
-       main=paste("Bootstrap Distribution of", statistic),
-       xlab=xlab_text)
-  abline(v=true_val, col="black", lwd=2)
-  y_max <- max(hist(boot_vals, plot=FALSE)$density)
-  text(x=true_val, y=y_max*0.9, labels=paste("Observed",statistic,"=",round(true_val,1)), pos=4, col="black")
+  hist(
+    boot_vals,
+    col = colour,
+    border = "white",
+    prob = TRUE,
+    main = label,
+    xlab = paste(statistic, "(milliseconds)")
+  )
+
+  abline(v = true_val, col = "black", lwd = 2)
+
+  y_max <- max(hist(boot_vals, plot = FALSE)$density)
+
+  text(
+    x = true_val,
+    y = y_max * 0.9,
+    labels = paste("Observed =", round(true_val, 1)),
+    pos = 4,
+    cex = 0.9
+  )
 }
 
 output$bootstrap_plot <- renderPlot({
+
   vec1 <- selected_vector()
   vec2 <- if(input$dataset2 != "None") selected_vector2() else NULL
 
-  colour2 <- if (!is.null(input$colour2)) input$colour2 else "firebrick"
-
   if(length(vec1) == 0){
     plot.new()
-    text(0.5,0.5,"No data available for selected filters")
+    text(0.5,0.5, "No data available for selected filters")
     return()
   }
 
+  colour2 <- if(!is.null(input$colour2)) input$colour2 else "firebrick"
+
+  stat_display <- if(input$statistic == "IQR") "IQR" else "Mean"
+
   if(!is.null(vec2) && length(vec2) > 0){
-    par(mfrow = c(1,2))
-    plot_bootstrap_hist(vec1, statistic = input$statistic, num_samples = input$resamples,
-                        seed = input$seed, colour = input$colour)
-    plot_bootstrap_hist(vec2, statistic = input$statistic, num_samples = input$resamples,
-                        seed = input$seed, colour = colour2)
-    par(mfrow = c(1,1))
+
+    par(mfrow = c(1, 2))
+
+    plot_single_hist(
+      vec = vec1,
+      statistic = input$statistic,
+      num_samples = input$resamples,
+      seed = input$seed,
+      colour = input$colour,
+      label = paste("Bootstrap ", stat_display, " of ", input$dataset)
+    )
+
+    plot_single_hist(
+      vec = vec2,
+      statistic = input$statistic,
+      num_samples = input$resamples,
+      seed = input$seed,
+      colour = colour2,
+      label = paste("Bootstrap ", stat_display, " of ", input$dataset2)
+    )
+
+    par(mfrow = c(1, 1))
+
   } else {
-    plot_bootstrap_hist(vec1, statistic = input$statistic, num_samples = input$resamples,
-                        seed = input$seed, colour = input$colour)
+
+    plot_single_hist(
+      vec = vec1,
+      statistic = input$statistic,
+      num_samples = input$resamples,
+      seed = input$seed,
+      colour = input$colour,
+      label = paste0("Bootstrap ", stat_display, " of ", input$dataset)
+    )
+
   }
+
 })
 
 output$summary_table <- renderTable({
