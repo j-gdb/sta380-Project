@@ -1,0 +1,25 @@
+every time I release the animal, it's always a surprise...
+
+That picture is my dog named Lucyfur.
+
+In terms of aesthetics:
+this is probably me being picky personally but I almost missed the description of the "comparison dataset". I would've tried to incorporate it somewhere more above so one doesn't need to scroll. In other words, I'm saying I would find a way to reformat the displays.
+
+In particular, besides the black line on the histograms it's hard to compare some features such as confidence intervals. I wonder if the tables could've benefitted from also just being merged together than being separate in terms of formatting.
+
+Overall I do think it's good, but I would tweak it slightly if this is something you were to ever add on a portfolio. Otherwise, well done.
+
+Grade: 
+Aesthetics (-5%) reasons said above.
+
+Additional Features (-10%)
+I didn't feel like you really added that many meaningful features beyond the requirements and the demo example.
+
+Group grade:
+> 65/80 * 6.4
+[1] 5.2
+
+Individual grades are private and will be released later when posted on Quercus. Bonus marks, if applicable, are reflected on Quercus instead of feedback here.
+JK there's only two of you since everyone else left and the two of you made meaningful contributions.
+
+Including the bonus mark, you're looking at 7.8/8 for this checkpoint for the both of you.
